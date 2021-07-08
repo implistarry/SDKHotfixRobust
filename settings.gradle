@@ -1,0 +1,7 @@
+include ':sdk'
+include ':patch'
+include ':gradle-plugin'
+include ':autopatchbase'
+include ':auto-patch-plugin'
+include ':app'
+rootProject.name = "SDKHotfixKit"

@@ -1,0 +1,29 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+compileGroovy {
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+}
+dependencies {
+    compile files('src\\main\\resources\\libs\\common-25.1.0.jar')
+    compile gradleApi()
+    compile localGroovy()
+    compile 'com.android.tools.build:gradle:4.1.2'
+    compile 'org.javassist:javassist:3.20.0-GA'
+    compile fileTree(dir: "./src/main/libs", include: ['*.jar'])
+    compile project(':autopatchbase')
+    compile 'org.ow2.asm:asm:9.1'
+    compile 'org.ow2.asm:asm-commons:9.1'
+    compile 'com.android.tools:common:25.1.0'
+
+}
+uploadArchives{
+    repositories.mavenDeployer{
+        // 配置本地仓库路径，项目根目录下的repository目录中
+        repository(url: uri('D:\\Android\\RE'))
+        pom.groupId = "com.xzh.viewlib"// 唯一标识（通常为模块包名，也可以任意）
+        pom.artifactId = "OXViewLib" // 项目名称（通常为类库模块名称，也可以任意）
+        pom.version = "1.0.4"      // 版本号
+    }
+}
+apply from: '../gradle_mvn_push.gradle'
